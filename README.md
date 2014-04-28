@@ -46,6 +46,12 @@ Up-to-date documentation at: http://docs.intelipost.com.br
 
 Releases
 --------------------
+## 0.3.0
+*2014-04-28 | Pablo del Vecchio*
+
+- updated quote example
+
+
 ## 0.2.3
 *2014-03-24 | Pablo del Vecchio*
 

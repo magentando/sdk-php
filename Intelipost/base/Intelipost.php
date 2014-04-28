@@ -10,17 +10,18 @@ class Intelipost
      * @var int
      */
     protected $estimatedDaysForDelivery = null;
-    private $username = null;
-    private $password = null;
+
+    private $apiUrl = null;
+    private $apiKey = null;
 
     /**
      * @param null $password
      * @param null $username
      */
-    public function __construct($password = null, $username = null)
+    public function __construct($api_url, $api_key)
     {
-        $this->password = $password;
-        $this->username = $username;
+        $this->apiUrl = $api_url;
+        $this->apiKey = $api_key;
     }
 
     /**
@@ -32,13 +33,13 @@ class Intelipost
         $bestOption = null;
 
         try {
-            $apiUrl = "http://api.intelipost.com.br/api/v1/";
-            $apiKey = "c13eff81b133865319635d77edd76713b0d8aea4c959d7b38397a28a6d222a67";
             $entityAction = "quote";
             $request = json_encode($data);
             $this->localLog("REQUEST: ".$request."\n");
-            $response = $this->intelipostRequest($apiUrl, $apiKey, $entityAction, $request);
+
+            $response = $this->intelipostRequest($this->apiUrl, $this->apiKey, $entityAction, $request);
             $this->localLog("RESPONSE: ".$response."\n");
+
             $response = json_decode($response);
 
             if (isset($response->status)) {
