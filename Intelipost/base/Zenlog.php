@@ -36,9 +36,9 @@ class Intelipost
             $apiKey = "c13eff81b133865319635d77edd76713b0d8aea4c959d7b38397a28a6d222a67";
             $entityAction = "quote";
             $request = json_encode($data);
-
+            $this->localLog("REQUEST: ".$request."\n");
             $response = $this->intelipostRequest($apiUrl, $apiKey, $entityAction, $request);
-
+            $this->localLog("RESPONSE: ".$response."\n");
             $response = json_decode($response);
 
             if (isset($response->status)) {
@@ -111,4 +111,10 @@ class Intelipost
         return $response;
     }
 
+    private function localLog($message)
+    {
+        // using the FILE_APPEND flag to append the content to the end of the file
+        // and the LOCK_EX flag to prevent anyone else writing to the file at the same time
+        file_put_contents("intelipost.log", $message, FILE_APPEND | LOCK_EX);
+    }
 }
