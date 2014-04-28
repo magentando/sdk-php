@@ -32,21 +32,14 @@ class Intelipost
         $bestOption = null;
 
         try {
-            $body = json_encode($data);
-            $s = curl_init();
-            curl_setopt($s, CURLOPT_TIMEOUT, 5000);
-            curl_setopt($s, CURLOPT_URL, "http://api-testing.e-sprinter.com.br/api/v1/quote");
-            if ($this->username != null && $this->password != null) {
-                curl_setopt($s, CURLOPT_USERPWD, $this->username . ":" . $this->password);
-            }
-            curl_setopt($s, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-            curl_setopt($s, CURLOPT_POST, true);
-            curl_setopt($s, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($s, CURLOPT_POSTFIELDS, $body);
-            $responseBody = curl_exec($s);
+            $apiUrl = "http://api.intelipost.com.br/api/v1/";
+            $apiKey = "c13eff81b133865319635d77edd76713b0d8aea4c959d7b38397a28a6d222a67";
+            $entityAction = "quote";
+            $request = json_encode($data);
 
-            $response = json_decode($responseBody);
-            curl_close($s);
+            $response = $this->intelipostRequest($apiUrl, $apiKey, $entityAction, $request);
+
+            $response = json_decode($response);
 
             if (isset($response->status)) {
                 if ($response->status != 'ERROR') {
@@ -91,6 +84,31 @@ class Intelipost
     public function getShippingInsuranceAmount()
     {
         return Intelipost_Settings::INTELIPOST_DEFAULT_INSURANCE;
+    }
+
+    /**
+     * @param $api_url
+     * @param $api_key
+     * @param bool $body
+     * @return mixed
+     */
+    private function intelipostRequest($api_url, $api_key, $entity_action, $request=false)
+    {
+        $s = curl_init();
+
+        curl_setopt($s, CURLOPT_TIMEOUT, 5000);
+        curl_setopt($s, CURLOPT_URL, $api_url.$entity_action);
+        curl_setopt($s, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "Accept: application/json", "api_key: $api_key"));
+        curl_setopt($s, CURLOPT_POST, true);
+        curl_setopt($s, CURLOPT_ENCODING , "");
+        curl_setopt($s, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($s, CURLOPT_POSTFIELDS, $request);
+
+        $response = curl_exec($s);
+
+        curl_close($s);
+
+        return $response;
     }
 
 }
