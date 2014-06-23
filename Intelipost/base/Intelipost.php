@@ -13,15 +13,17 @@ class Intelipost
 
     private $apiUrl = null;
     private $apiKey = null;
+    private $logging = false;
 
     /**
      * @param null $password
      * @param null $username
      */
-    public function __construct($api_url, $api_key)
+    public function __construct($api_url, $api_key, $logging=false)
     {
         $this->apiUrl = $api_url;
         $this->apiKey = $api_key;
+        $this->logging = $logging;
     }
 
     /**
@@ -35,10 +37,15 @@ class Intelipost
         try {
             $entityAction = "quote";
             $request = json_encode($data);
-            $this->localLog("REQUEST: ".$request."\n");
+
+            if ($this->logging) {
+                $this->localLog(date('Y-m-d H:i:s')." REQUEST\n".$request."\n");
+            }
 
             $response = $this->intelipostRequest($this->apiUrl, $this->apiKey, $entityAction, $request);
-            $this->localLog("RESPONSE: ".$response."\n");
+            if ($this->logging) {
+                $this->localLog(date('Y-m-d H:i:s')." RESPONSE\n".$response."\n");
+            }
 
             $response = json_decode($response);
 
