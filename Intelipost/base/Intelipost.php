@@ -29,7 +29,7 @@ class Intelipost
     public function quote(Intelipost_Model_Request $request)
     {
         try {
-            $entityAction = "quote";
+            $entityAction = "/quote";
 
             $request = json_encode($request);
 
@@ -40,7 +40,7 @@ class Intelipost
             $response = $this->intelipostRequest($this->apiUrl, $this->apiKey, $entityAction, $request);
 
             if ($this->logging) {
-                $this->localLog(date('Y-m-d H:i:s')." RESPONSE\n".$response."\n\n");
+                $this->localLog(date('Y-m-d H:i:s')." RESPONSE\n".json_encode(json_decode($response))."\n\n");
             }
 
         } catch (Exception $e) {
