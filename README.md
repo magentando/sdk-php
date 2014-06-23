@@ -46,6 +46,12 @@ Up-to-date documentation at: http://docs.intelipost.com.br
 
 Releases
 --------------------
+## 0.3.2
+*2014-06-23 | Pablo del Vecchio*
+
+- added response model
+
+
 ## 0.3.0
 *2014-04-28 | Pablo del Vecchio*
 

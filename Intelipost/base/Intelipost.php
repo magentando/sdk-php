@@ -6,18 +6,14 @@
 
 class Intelipost
 {
-    /**
-     * @var int
-     */
-    protected $estimatedDaysForDelivery = null;
-
     private $apiUrl = null;
     private $apiKey = null;
     private $logging = false;
 
     /**
-     * @param null $password
-     * @param null $username
+     * @param $api_url
+     * @param $api_key
+     * @param bool $logging
      */
     public function __construct($api_url, $api_key, $logging=false)
     {
@@ -27,50 +23,33 @@ class Intelipost
     }
 
     /**
-     * @param Intelipost_Model_Request $data
-     * @return float
+     * @param Intelipost_Model_Request $request
+     * @return mixed|string
      */
-    public function calculateShippingCost(Intelipost_Model_Request $data)
+    public function quote(Intelipost_Model_Request $request)
     {
-        $bestOption = null;
-
         try {
             $entityAction = "quote";
-            $request = json_encode($data);
+
+            $request = json_encode($request);
 
             if ($this->logging) {
-                $this->localLog(date('Y-m-d H:i:s')." REQUEST\n".$request."\n");
+                $this->localLog(date('Y-m-d H:i:s')." REQUEST\n".$request."\n\n");
             }
 
             $response = $this->intelipostRequest($this->apiUrl, $this->apiKey, $entityAction, $request);
+
             if ($this->logging) {
-                $this->localLog(date('Y-m-d H:i:s')." RESPONSE\n".$response."\n");
+                $this->localLog(date('Y-m-d H:i:s')." RESPONSE\n".$response."\n\n");
             }
 
-            $response = json_decode($response);
-
-            if (isset($response->status)) {
-                if ($response->status != 'ERROR') {
-                    if (count($response->content->delivery_options) > 0)
-                        $bestOption = array_shift($response->content->delivery_options);
-                    foreach ($response->content->delivery_options as $option) {
-                        if ($option->final_shipping_cost < $bestOption->final_shipping_cost)
-                            $bestOption = $option;
-                    }
-                }
-            }
         } catch (Exception $e) {
-            $bestOption = null;
+            $response = json_encode(array('status' => 'KO'));
+
         }
 
-        if (is_null($bestOption)) {
-            $minPrice = null;
-        } else {
-            $minPrice = $bestOption->final_shipping_cost;
-            $this->estimatedDaysForDelivery = $bestOption->delivery_estimate_business_days;
-        }
+        return $response;
 
-        return $minPrice;
     }
 
     /**
@@ -83,7 +62,6 @@ class Intelipost
         } else {
             return $this->estimatedDaysForDelivery;
         }
-
     }
 
     /**
