@@ -33,13 +33,13 @@ class Intelipost
 
             $request = json_encode($request);
 
-            if ($this->logging) {
+            if ($this->logging == true) {
                 $this->localLog(date('Y-m-d H:i:s')." REQUEST\n".$request."\n\n");
             }
 
             $response = $this->intelipostRequest($this->apiUrl, $this->apiKey, $entityAction, $request);
 
-            if ($this->logging) {
+            if ($this->logging == true) {
                 $this->localLog(date('Y-m-d H:i:s')." RESPONSE\n".json_encode(json_decode($response))."\n\n");
             }
 
