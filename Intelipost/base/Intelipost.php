@@ -90,9 +90,19 @@ class Intelipost
         curl_setopt($s, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($s, CURLOPT_POSTFIELDS, $request);
 
+        $start = microtime(true);
+
         $response = curl_exec($s);
 
+        $finish = round((microtime(true) - $start)*1000)." ms";
+
         curl_close($s);
+
+        $response = json_decode($response, true);
+
+        $reponse['round_trip'] = $finish;
+
+        $response = json_encode($response);
 
         return $response;
     }

@@ -46,6 +46,12 @@ Up-to-date documentation at: http://docs.intelipost.com.br
 
 Releases
 --------------------
+## 0.3.3
+*2014-07-07 | Pablo del Vecchio*
+
+- added round_trip network time
+
+
 ## 0.3.2
 *2014-06-23 | Pablo del Vecchio*
 
