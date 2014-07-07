@@ -46,6 +46,12 @@ Up-to-date documentation at: http://docs.intelipost.com.br
 
 Releases
 --------------------
+## 0.3.4
+*2014-07-07 | Pablo del Vecchio*
+
+- changed basic log format
+
+
 ## 0.3.3
 *2014-07-07 | Pablo del Vecchio*
 

@@ -111,6 +111,6 @@ class Intelipost
     {
         // using the FILE_APPEND flag to append the content to the end of the file
         // and the LOCK_EX flag to prevent anyone else writing to the file at the same time
-        file_put_contents("intelipost.log", $message, FILE_APPEND | LOCK_EX);
+        file_put_contents("intelipost_".date('Y-m-d').".log", $message, FILE_APPEND | LOCK_EX);
     }
 }
