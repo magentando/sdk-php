@@ -100,7 +100,7 @@ class Intelipost
 
         $response = json_decode($response, true);
 
-        $reponse['round_trip'] = $finish;
+        $response['round_trip'] = $finish;
 
         $response = json_encode($response);
 
