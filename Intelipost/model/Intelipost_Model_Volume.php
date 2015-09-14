@@ -1,7 +1,7 @@
 <?php
 /**
- * @author Intelipost (it@intelipost.com.br)
- *
+ * @author Intelipost (it@intelipost.com.br) teste
+ * 
  */
 
 class Intelipost_Model_Volume {
