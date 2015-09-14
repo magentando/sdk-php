@@ -7,6 +7,10 @@ namespace Intelipost\IntelipostModel;
  */
 final class shipment_order {
 
+    const SHIPMENT_ORDER_TYPE_NORMAL = "NORMAL";
+    const SHIPMENT_ORDER_TYPE_RESEND = "RESEND";
+    
+    public $id;
     public $quote_id;
     public $delivery_method_id;
     /**
@@ -14,11 +18,19 @@ final class shipment_order {
      */
     public $end_customer;
     /**
-     *
      * @var shipment_order_volume_array
      */
     public $shipment_order_volume_array;
     public $order_number;
     public $estimated_delivery_date;
-
+    public $provider_shipping_costs;
+    public $customer_shipping_costs;    
+    public $estimated_delivery_date_lp;
+    public $shipped_date;
+    public $created;
+    public $modified;    
+    public $shipment_order_volume_state;
+    public $shipment_order_type;
+    public $parent_shipment_order_number;
+    public $delivered_date;
 }

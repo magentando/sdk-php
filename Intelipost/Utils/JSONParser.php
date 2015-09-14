@@ -54,8 +54,8 @@ final class JSONParser {
      * @param stdclass $x StdClass com as propriedades do objeto destino
      * @param type $obj Instância do objeto que receberá os dados do JSON
      */
-    public static function parseFromStdClass($x, $obj) {
-        $obj = JSONParser::parseObject($x, $obj);
+    public static function parseFromStdClass($target, $obj) {
+        $obj = JSONParser::parseObject($target, $obj);
         return $obj;
     }
 

@@ -16,12 +16,32 @@ final class additional_information {
      */    
     public $extra_cost_absolute;
     /**
+     * @var float
+     */    
+    public $extra_cost_percentage;
+    /**
      * @var int
      */    
     public $lead_time_business_days;
     /**
      * @var int
      */    
-    public $delivery_method_id;
+    public $tax_id;
+    /**
+     * @var int[]
+     */    
+    public $delivery_method_ids;
+    /**
+     * @var string
+     */    
+    public $client_type;
+    /**
+     * @var string
+     */    
+    public $sales_channel;
+        
+    public function __construct() {
+        $this->delivery_method_ids = array();
+    }
 
 }

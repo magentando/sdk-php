@@ -7,6 +7,13 @@ namespace Intelipost\IntelipostModel;
  */
 final class quote_by_product {
 
+    public $id;
+    public $created;
+    /**
+     * @arrayOf Intelipost\IntelipostModel\delivery_option
+     * @var delivery_option[]
+     */
+    public $delivery_options;
      /**
      * @var string
      */
@@ -16,6 +23,12 @@ final class quote_by_product {
      */
     public $destination_zip_code;
 
+    /**
+     * @var identification
+     * @objectType Intelipost\IntelipostModel\identification
+     */
+    public $identification;
+    
     /**
      * @var product[]
      * @arrayOf Intelipost\IntelipostModel\product

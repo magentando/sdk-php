@@ -14,9 +14,12 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     
     private function CreateTypedResponse()
     {
-        //TODO use jsonParser
-        
         $q = new \Intelipost\IntelipostModel\quote();
+        $parser = new \Intelipost\Utils\JSONParser();
+        $parser->parseFromStdClass($q, $this->resultObj);
+        $this->quote = $q;
+        
+        /*
         $q->client_id = $this->resultObj->client_id;
         $q->created = $this->resultObj->created;
         $q->created_iso = $this->resultObj->created_iso;        
@@ -60,9 +63,8 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
             $vo->weight = $v->weight;
             $vo->width = $v->width;
             array_push($q->volumes, $vo);
-        }        
-        
-        $this->quote = $q;
+        }
+        $this->quote = $q;      */
     }
     
     protected function ProcessResponse() {

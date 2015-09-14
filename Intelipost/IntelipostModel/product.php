@@ -39,5 +39,9 @@ final class product {
      * @var string
      */    
     public $description;
+    /**
+     * @var boolean
+     */    
+    public $can_group;
 
 }
