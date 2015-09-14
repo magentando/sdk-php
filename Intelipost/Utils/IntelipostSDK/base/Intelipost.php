@@ -30,7 +30,7 @@ class Intelipost
     {
         try {
             $entityAction = "/quote";
-
+            //30$this->rapaiel = 'oi'
             $request = json_encode($request);
 
             if ($this->logging == true) {
@@ -109,8 +109,6 @@ class Intelipost
 
     private function localLog($message)
     {
-        // using the FILE_APPEND flag to append the content to the end of the file
-        // and the LOCK_EX flag to prevent anyone else writing to the file at the same time
-        file_put_contents("intelipost_".date('Y-m-d').".log", $message, FILE_APPEND | LOCK_EX);
+        //file_put_contents("intelipost_".date('Y-m-d').".log", $message, FILE_APPEND | LOCK_EX);
     }
 }

@@ -1,3 +1,5 @@
 .idea/*
 
 Intelipost/examples/*.log
+/nbproject/
+/nbproject/private/
