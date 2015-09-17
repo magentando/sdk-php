@@ -21,7 +21,11 @@ final class Intelipost {
     /**
      * @var Proxy\IRastreamento
      */
-    private $rastreamentoProxy;
+    private $rastreamentoProxy;    
+    /**
+     * @var Proxy\IGetLabel
+     */
+    private $labelProxy;
     
     public function __construct() {
         $this->InitializeProxies();
@@ -32,7 +36,8 @@ final class Intelipost {
         $this->cepProxy = new Proxy\CepProxy();
         $this->cotacaoProxy = new Proxy\CotacaoProxy();
         $this->pedidoProxy = new Proxy\PedidoProxy();
-        $this->rastreamentoProxy = new Proxy\RastreamentoProxy();        
+        $this->rastreamentoProxy = new Proxy\RastreamentoProxy(); 
+        $this->labelProxy = new Proxy\GetLabelProxy();
     }
     
     /**
@@ -65,6 +70,14 @@ final class Intelipost {
     public function GetRastreamento()
     {
         return $this->rastreamentoProxy;
+    }
+    
+    /**
+     * @return Proxy\IGetLabel
+     */
+    public function GetLabel()
+    {
+    	return $this->labelProxy;
     }
     
 }
