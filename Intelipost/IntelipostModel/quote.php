@@ -37,12 +37,29 @@ final class quote {
      */
     public $additional_information;
     /**
+     * @var identification
+     * @objectType Intelipost\IntelipostModel\identification
+     */
+    public $identification;    
+    /**
      * @var DeliveryOption[]
      * @arrayOf Intelipost\IntelipostModel\DeliveryOption
      */
     public $delivery_options;
     /**
-     * @var volume[]
+     * @var volumes[]
+     * @arrayOf Intelipost\IntelipostModel\volume
      */
     public $volumes;
+    public function __construct() {
+    	$this->volumes = array();
+    	$this->additional_information = new additional_information();
+    	$this->identification = new identification();
+    	$this->delivery_options[] = new delivery_option();
+    }
+    public function AddVolume(volume $volume)
+    {
+    	var_dump($volume);
+    	array_push($this->volumes, $volume);
+    }
 }

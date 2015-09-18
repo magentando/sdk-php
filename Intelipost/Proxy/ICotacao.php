@@ -19,7 +19,12 @@ interface ICotacao {
      */    
     public function CriarCotacaoPorProduto(\Intelipost\IntelipostModel\quote_by_product $req);
     
-    public function CriarCotacaoPorVolume();
+    /**
+     * @param \Intelipost\IntelipostModel\quote $req
+     * @return \Intelipost\Response\IntelipostCotacaoSemVolumeResponse
+     * @throws \Intelipost\IntelipostCotacaoException
+     */
+    public function CriarCotacaoPorVolume(\Intelipost\IntelipostModel\quote $req);
     
     /**
      * @param int $idCotacaoIntelipost

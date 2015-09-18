@@ -4,6 +4,7 @@ namespace Intelipost\Proxy;
 
 use Intelipost\Response;
 use Intelipost\IntelipostModel;
+use Intelipost;
 
 /**
  * @author Leonardo Volpatto <leovolpatto@gmail.com>
@@ -55,10 +56,19 @@ final class CotacaoProxy extends ProxyBase implements ICotacao {
         return new Response\IntelipostCotacaoSemVolumeResponse($res);        
     }
 
-    public function CriarCotacaoPorVolume() {
-        
-        throw new \Exception("Not implemented yet");
-    
+    public function CriarCotacaoPorVolume(Intelipost\IntelipostModel\quote $req) {
+    	$json = json_encode($req);
+    	
+    	if(json_last_error() > 0)
+    		throw new \Intelipost\IntelipostCotacaoException("json encode error", $req);
+    	
+    	$this->InitializeDefaultCurl();
+    	$this->_curl->SetCustomRequest("POST");
+    	$this->_curl->SetPost($json);
+    	$this->_curl->CreateCurl($this->_baseURL . "/quote");
+    	$res = $this->_curl->GetResult();
+    	
+    	return new Response\IntelipostCotacaoSemVolumeResponse($res);    
     }
 
 }
