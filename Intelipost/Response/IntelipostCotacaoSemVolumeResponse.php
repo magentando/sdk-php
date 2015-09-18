@@ -16,8 +16,7 @@ final class IntelipostCotacaoSemVolumeResponse extends IntelipostResponseBase {
     {
         $q = new \Intelipost\IntelipostModel\quote();
         $parser = new \Intelipost\Utils\JSONParser();
-        $parser->parseFromStdClass($q, $this->resultObj);
-        $this->quote = $q;
+        $this->quote = $parser->parseFromStdClass($q, $this->resultObj);
         
         /*
         $q->client_id = $this->resultObj->client_id;
