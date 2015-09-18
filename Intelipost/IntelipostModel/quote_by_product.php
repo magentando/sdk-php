@@ -44,6 +44,7 @@ final class quote_by_product {
     public function __construct() {
         $this->products = array();
         $this->additional_information = new additional_information();
+        $this->delivery_options = new delivery_option();
     }
     
     public function AddProduct(product $product)
