@@ -158,4 +158,8 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     public function ConsultarVolumesCaixas() {
         throw new \Exception('Not implemented yet');
     }
+    public function RecebimentoStatus($json) {
+		$obj = new \Intelipost\Response\IntelipostWebhook($json);
+		return $obj->getStatus();
+    }
 }

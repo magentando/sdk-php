@@ -68,4 +68,5 @@ interface IPedidoDeEnvio {
     
     public function AtualizarVolumesDeUmPedido();    
     
+    public function RecebimentoStatus($json);
 }
