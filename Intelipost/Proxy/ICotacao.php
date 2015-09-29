@@ -30,6 +30,12 @@ interface ICotacao {
      * @param int $idCotacaoIntelipost
      * @return \Intelipost\Response\IntelipostCotacaoSemVolumeResponse
      */    
-    public function ConsultarUmaCotacao($idCotacaoIntelipost);    
+    public function ConsultarUmaCotacao($idCotacaoIntelipost); 
+    
+    /**
+     * @param Arguments\CalcularDataDeEntregaArgs $args
+     * @return \Intelipost\Response\IntelipostCalcularDataEntregaResponse
+     */
+    public function CalcularDataDeEntrega(Arguments\CalcularDataDeEntregaArgs $args);    
     
 }

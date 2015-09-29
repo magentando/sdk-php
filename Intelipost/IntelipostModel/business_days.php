@@ -7,9 +7,10 @@ namespace Intelipost\IntelipostModel;
  */
 final class business_days {
     
-    public $cep_origem;
-    public $cep_destino;
-    public $dias_uteis;
-    public $date;
+    public $base_date;
+    public $base_date_iso;
+    public $result;
+    public $result_iso;
+    public $days;
     
 }
