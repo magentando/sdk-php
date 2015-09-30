@@ -47,7 +47,7 @@ Up-to-date documentation at: http://docs.intelipost.com.br
 Releases
 --------------------
 ## 1.0.0
-*2014-07-07 | Intelipost*
+*2015-09-30 | Intelipost*
 
 - Get CEP - Auto Complete
 - Get Activated Delivery Methods
