@@ -10,6 +10,10 @@ use Intelipost\IntelipostModel;
  */
 final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     
+    public function __construct() {
+        $this->InitializeDefaultCurl();
+    }
+    
     /**
      * @param int $numeroDoPedido
      * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
@@ -60,18 +64,14 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     }
 
     /**
-     * @param string $numeroDoPedido
-     * @param string $event_date
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidoComoEnviadoArg $arg
      * @return \Intelipost\Response\IntelipostPedidoMarcadoComoEnviadoResponse
      */
-    public function MarcarPedidoComoEnviado($numeroDoPedido, $event_date) {
+    public function MarcarPedidoComoEnviado(Arguments\MarcarPedidoComoEnviadoArg $arg) {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
-        $rq = array();
-        $rq['order_number'] = $numeroDoPedido;
-        $rq['event_date'] = $event_date;
-        $this->_curl->SetPost(json_encode($rq));
+        $this->_curl->SetPost(json_encode($arg));
         $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/shipped");
         
         $res = $this->_curl->GetResult();
@@ -79,34 +79,29 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     }
 
     /**
-     * @param Arguments\MarcarDiversosPedidoComoEnviadoArgs $args
-     * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidosComoEnviadosArgs $args
+     * @return \Intelipost\Response\IntelipostPedidoMarcadoComoEnviadoResponse
      */
-    public function MarcarDiversosPedidosComoEnviado(Arguments\MarcarDiversosPedidoComoEnviadoArgs $args) {
+    public function MarcarDiversosPedidosComoEnviado(Arguments\MarcarPedidosComoEnviadosArgs $args) {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
         $this->_curl->SetPost(json_encode($args->GetOrders()));
-        $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/shipped");
-        
+        $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/multi/shipped/with_date");
+                
         $res = $this->_curl->GetResult();
         return new Response\IntelipostPedidoMarcadoComoEnviadoResponse($res);        
     }
 
-
     /**
-     * @param string $numeroDoPedido
-     * @param string $event_date
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidoComoProntoParaEnvioArg $arg
      * @return \Intelipost\Response\IntelipostPedidoMarcadoComoProntoResponse
      */
-    public function MarcarPedidoComoProntoParaEnvio($numeroDoPedido, $event_date) {        
+    public function MarcarPedidoComoProntoParaEnvio(Arguments\MarcarPedidoComoProntoParaEnvioArg $arg) {        
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
-        $rq = array();
-        $rq['order_number'] = $numeroDoPedido;
-        $rq['event_date'] = $event_date;
-        $this->_curl->SetPost(json_encode($rq));
+        $this->_curl->SetPost(json_encode($arg));
         $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/ready_for_shipment");
         
         $res = $this->_curl->GetResult();
@@ -114,15 +109,16 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     }
 
     /**
-     * @param array $pedidos
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidosComoProntoParaEnvioArgs $args
      * @return \Intelipost\Response\IntelipostPedidoMarcadoComoProntoResponse
      */
-    public function MarcarDiversosPedidosParaProntoParaEnvio(array $pedidos) {
+    public function MarcarDiversosPedidosParaProntoParaEnvio(Arguments\MarcarPedidosComoProntoParaEnvioArgs $args) {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
-        $this->_curl->SetPost(json_encode($pedidos));
-        $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/multi/ready_for_shipment");
+        $payload = json_encode($args->GetOrders());
+        $this->_curl->SetPost($payload);
+        $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/multi/ready_for_shipment/with_date");
         
         $res = $this->_curl->GetResult();
         return new Response\IntelipostPedidoMarcadoComoProntoResponse($res);

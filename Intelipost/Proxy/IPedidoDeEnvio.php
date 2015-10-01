@@ -27,28 +27,28 @@ interface IPedidoDeEnvio {
     public function CancelarPedidoDeEnvio($numeroDoPedido);
 
     /**
-     * @param int $numeroDoPedido
      * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoProntoResponse
-     */    
-    public function MarcarPedidoComoProntoParaEnvio($numeroDoPedido);
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidoComoProntoParaEnvioArg $arg
+     */
+    public function MarcarPedidoComoProntoParaEnvio(Arguments\MarcarPedidoComoProntoParaEnvioArg $arg);
 
     /**
-     * @param int $numeroDoPedido
      * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoEnviadoResponse
-     */    
-    public function MarcarPedidoComoEnviado($numeroDoPedido);
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidoComoEnviadoArg $args
+     */
+    public function MarcarPedidoComoEnviado(Arguments\MarcarPedidoComoEnviadoArg $args);
 
     /**
-     * @param Arguments\MarcarDiversosPedidoComoEnviadoArgs $args
+     * @param Arguments\MarcarPedidosComoEnviadosArgs $args
      * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoEnviadoResponse
      */    
-    public function MarcarDiversosPedidosComoEnviado(Arguments\MarcarDiversosPedidoComoEnviadoArgs $args);
+    public function MarcarDiversosPedidosComoEnviado(Arguments\MarcarPedidosComoEnviadosArgs $args);
     
     /**
-     * @param array $pedidos
+     * @param \Intelipost\Proxy\Arguments\MarcarPedidosComoProntoParaEnvioArgs $args
      * @return \Intelipost\Proxy\Response\IntelipostPedidoMarcadoComoProntoResponse[]
      */
-    public function MarcarDiversosPedidosParaProntoParaEnvio(array $pedidos);
+    public function MarcarDiversosPedidosParaProntoParaEnvio(Arguments\MarcarPedidosComoProntoParaEnvioArgs $args);
         
     public function ImpressaoDasEtiquetas();
     
