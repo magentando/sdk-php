@@ -60,15 +60,17 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
     }
 
     /**
-     * @param int $numeroDoPedido
-     * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
+     * @param string $numeroDoPedido
+     * @param string $event_date
+     * @return \Intelipost\Response\IntelipostPedidoMarcadoComoEnviadoResponse
      */
-    public function MarcarPedidoComoEnviado($numeroDoPedido) {
+    public function MarcarPedidoComoEnviado($numeroDoPedido, $event_date) {
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
         $rq = array();
         $rq['order_number'] = $numeroDoPedido;
+        $rq['event_date'] = $event_date;
         $this->_curl->SetPost(json_encode($rq));
         $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/shipped");
         
@@ -91,16 +93,19 @@ final class PedidoProxy extends ProxyBase implements IPedidoDeEnvio {
         return new Response\IntelipostPedidoMarcadoComoEnviadoResponse($res);        
     }
 
+
     /**
-     * @param int $numeroDoPedido
-     * @return \Intelipost\Response\IntelipostCancelamentoPedidoResponse
+     * @param string $numeroDoPedido
+     * @param string $event_date
+     * @return \Intelipost\Response\IntelipostPedidoMarcadoComoProntoResponse
      */
-    public function MarcarPedidoComoProntoParaEnvio($numeroDoPedido) {        
+    public function MarcarPedidoComoProntoParaEnvio($numeroDoPedido, $event_date) {        
         $this->_curl->SetIncludeHeader(false);
         $this->_curl->SetCustomRequest("POST");
         
         $rq = array();
         $rq['order_number'] = $numeroDoPedido;
+        $rq['event_date'] = $event_date;
         $this->_curl->SetPost(json_encode($rq));
         $this->_curl->CreateCurl($this->_baseURL . "/shipment_order/ready_for_shipment");
         

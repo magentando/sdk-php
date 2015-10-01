@@ -33,4 +33,6 @@ final class shipment_order {
     public $shipment_order_type;
     public $parent_shipment_order_number;
     public $delivered_date;
+    public $event_date;
+    public $sales_channel;
 }
