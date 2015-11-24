@@ -1,6 +1,7 @@
 {
     "name": "intelipost/api-php",
     "description": "Intelipost Logistics Gateway Magento Extension",
+    "minimum-stability": "dev",
     "keywords": [ "shipping", "api", "intelipost", "logistics", "gateway" ],
     "homepage": "https://github.com/intelipost/api-php",
     "type": "library",
