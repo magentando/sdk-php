@@ -8,7 +8,11 @@
     "authors": [
         {
             "name": "Intelipost"
-        }
+        },
+        {
+            "name": "leonardo volpatto",
+            "email": "leovolpatto@gmail.com"
+        }        
     ],
     "require": {
         "ext-curl": "*",
@@ -24,5 +28,5 @@
     "autoload": {
         "classmap": [ "Intelipost/" ]
     },
-    "version": "0.3.4"
+    "version": "0.3.4-beta"
 }
