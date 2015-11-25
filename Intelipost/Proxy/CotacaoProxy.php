@@ -96,5 +96,14 @@ final class CotacaoProxy extends ProxyBase implements ICotacao {
         
         return new Response\IntelipostCalcularDataEntregaResponse($this->_curl->GetResult());
     }
+    
+    /**
+     * @param CalcularDataDeEntregaArgs $args
+     * @return \Intelipost\Response\IntelipostCalcularDataEntregaResponse
+     */
+    public function CotacaoContingencia($cepDestino, $peso, $valorNotaFiscal)
+    {   
+    	return new Response\IntelipostCotacaoContingenciaResponse($cepDestino, $peso, $valorNotaFiscal);
+    }
 
 }

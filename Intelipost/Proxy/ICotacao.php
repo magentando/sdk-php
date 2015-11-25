@@ -36,6 +36,12 @@ interface ICotacao {
      * @param Arguments\CalcularDataDeEntregaArgs $args
      * @return \Intelipost\Response\IntelipostCalcularDataEntregaResponse
      */
-    public function CalcularDataDeEntrega(Arguments\CalcularDataDeEntregaArgs $args);    
+    public function CalcularDataDeEntrega(Arguments\CalcularDataDeEntregaArgs $args); 
+    
+    /**
+     * @param Arguments\CalcularDataDeEntregaArgs $args
+     * @return \Intelipost\Response\IntelipostCalcularDataEntregaResponse
+     */
+    public function CotacaoContingencia($cepDestino,$peso,$valorNotaFiscal);
     
 }
