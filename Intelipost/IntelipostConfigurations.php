@@ -13,8 +13,8 @@ final class IntelipostConfigurations {
     private static $confs;
     
     /**
-     * @return IntelipostConfigurations
-     */
+    * @return IntelipostConfigurations
+    */
     public static function Instance()
     {
         if(self::$confs == null)
@@ -35,12 +35,11 @@ final class IntelipostConfigurations {
         
     }
     
-    private function LoadConfigs()
+    private function LoadConfigs($apiKey)
     {        
         $this->config->url = "https://api.intelipost.com.br/api/v1";
         // A propriedade "apiKey" Deve ser configurada com a chave de acesso da conta intelipost
         // A chave de acesso pode ser encontrada neste link - https://secure.intelipost.com.br/client-information/
-        $this->config->apiKey = "";    
-    }
-    
+        $this->config->apiKey = $apiKey;    
+    }  
 }
