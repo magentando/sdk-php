@@ -35,4 +35,5 @@ final class shipment_order {
     public $delivered_date;
     public $event_date;
     public $sales_channel;
+    public $origin_zip_code;
 }
