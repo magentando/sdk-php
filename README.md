@@ -46,6 +46,12 @@ Up-to-date documentation at: http://docs.intelipost.com.br
 
 Releases
 --------------------
+## 1.0.1
+*2016-02-10 | Intelipost*
+
+- Origin zip code to create a shipment order
+- ApiKey as parameter on LoadConfigs method
+
 ## 1.0.0
 *2015-09-30 | Intelipost*
 
