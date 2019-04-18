@@ -1,28 +1,19 @@
 {
-    "name": "intelipost/api-php",
-    "description": "Intelipost Logistics Gateway Magento Extension",
-    "keywords": [ "shipping", "api", "intelipost", "logistics", "gateway" ],
-    "homepage": "https://github.com/intelipost/api-php",
+    "name": "magentando/intelipost-sdk",
+    "description": "Intelipost SDK",
     "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Intelipost"
-        },
-        {
-            "name": "leonardo volpatto",
-            "email": "leovolpatto@gmail.com"
-        }        
+    "license": [
+        "MIT"
     ],
-    "require": {
-        "ext-curl": "*",
-        "ext-json": "*",
-        "php": ">=5.3.0"
-    },
+
     "config": {
-        "bin-dir": "bin"
+        "use-include-path": true
     },
     "autoload": {
-        "classmap": [ "Intelipost/" ]
-    }
+        "psr-4": {
+            "Intelipost\\": "Intelipost/"
+        }
+    },
+    "minimum-stability": "alpha",
+    "prefer-stable": true
 }
