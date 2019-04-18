@@ -26,7 +26,7 @@ abstract class IntelipostResponseBase {
     
    protected function ProcessResponse() {
 
-        $res = gzdecode($this->apiResult);
+        $res = $this->apiResult;
         if (!$res) {
             $obj = json_decode($this->apiResult);
             
