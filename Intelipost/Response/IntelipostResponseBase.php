@@ -23,7 +23,10 @@ abstract class IntelipostResponseBase {
         $this->apiResult = $apiResult;
         $this->ProcessResponse();
     }
-    
+
+    /**
+     * @throws \Exception
+     */
    protected function ProcessResponse() {
 
         $res = $this->apiResult;
@@ -40,8 +43,13 @@ abstract class IntelipostResponseBase {
             if ($content == null)
                 $content = json_decode($this->_curl->GetResult());
 
-            $this->HandleResponseStatus($content);            
-            $c = $content->content;
+            $this->HandleResponseStatus($content);
+
+            try {
+                $c = $content->content;
+            } catch (\Exception $exception) {
+                throw new \Exception($exception->getMessage() . ' - Response: ' . $res);
+            }
             if ($this->isSuccess)
                 $this->resultObj = $c;
         }
